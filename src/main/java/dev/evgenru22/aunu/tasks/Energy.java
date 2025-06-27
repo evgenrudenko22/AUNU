@@ -1,7 +1,8 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import amongUs.Main;
 
 public class Energy extends Longs {
 	
@@ -31,16 +31,16 @@ public class Energy extends Longs {
 				
 				Block block = e.getClickedBlock();
 				
-				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.WOOL)
+				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.WHITE_WOOL)
 					return;
 				
 				if(step == 1) {
 					
-					if(slider.contains(block) && block.getData() == 0)
-						block.setData((byte)4);
+					if(slider.contains(block) && block.getType() == Material.WHITE_WOOL)
+						block.setType(Material.YELLOW_WOOL);
 					
 					for(Block _block: slider)
-						if(_block.getData() == 0)
+						if(_block.getType() == Material.WHITE_WOOL)
 							return;
 					
 					nextStep();
@@ -63,7 +63,7 @@ public class Energy extends Longs {
 	public void start() {
 		
 		for(Block block: slider)
-			block.setData((byte)0);
+			block.setType(Material.WHITE_WOOL);
 		
 	}
 

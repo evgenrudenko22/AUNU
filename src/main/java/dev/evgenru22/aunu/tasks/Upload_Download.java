@@ -1,14 +1,14 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.scheduler.BukkitTask;
 
-import amongUs.Main;
 
 public class Upload_Download extends Longs {
 	
@@ -43,7 +43,7 @@ public class Upload_Download extends Longs {
 						
 					}
 					
-					barUpload.get(barUpload.size()-progress-1).setData((byte)5);
+					barUpload.get(barUpload.size()-progress-1).setType(Material.LIME_WOOL);
 					
 				} else {
 					
@@ -54,7 +54,7 @@ public class Upload_Download extends Longs {
 						
 					}
 					
-					barDownload.get(barDownload.size()-progress-1).setData((byte)5);
+					barDownload.get(barDownload.size()-progress-1).setType(Material.LIME_WOOL);
 					
 				}
 				
@@ -79,10 +79,10 @@ public class Upload_Download extends Longs {
 		
 		if(step == 1)
 			for(Block block: barUpload)
-				block.setType(Material.WOOL);
+				block.setType(Material.WHITE_WOOL);
 		else
 			for(Block block: barDownload)
-				block.setType(Material.WOOL);
+				block.setType(Material.WHITE_WOOL);
 		
 	}
 

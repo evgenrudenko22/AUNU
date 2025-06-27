@@ -4,12 +4,12 @@ import dev.evgenru22.aunu.game.Lobby;
 import dev.evgenru22.aunu.game.LobbySign;
 import dev.evgenru22.aunu.managers.ConfigManager;
 import dev.evgenru22.aunu.managers.InvManager;
+import dev.evgenru22.aunu.managers.ProtocolLibManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import managers.ProtocolLibManager;
 
 public class Main extends JavaPlugin {
 
@@ -29,13 +29,14 @@ public class Main extends JavaPlugin {
 		Runnable runnable = new Runnable() {
 			
 			@Override
-			public void run() {ProtocolLibManager.init();}
+			public void run() {
+				ProtocolLibManager.init();}
 			
 		};
 		
 		Bukkit.getScheduler().runTaskLater(this, runnable, 60);
 		
-		getCommand("among").setExecutor((CommandExecutor)new Commands());
+		getCommand("among").setExecutor(new Commands());
 		
 		getLogger().info("Started!");
 		getLogger().info("ProtocolLib connecting...");

@@ -1,7 +1,8 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import amongUs.Main;
 
 public class Refuel extends Longs {
 	
@@ -23,7 +23,7 @@ public class Refuel extends Longs {
 		super(loc, locTo, nextStepsLocation, nextStepsLocTo);
 		
 		bar = blocksFromTwoPoints(start, end);
-		
+
 		Bukkit.getPluginManager().registerEvents(new Listener() {
 			
 			@SuppressWarnings("deprecation")
@@ -32,12 +32,12 @@ public class Refuel extends Longs {
 				
 				Block block = e.getClickedBlock();
 				
-				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.CONCRETE_POWDER)
+				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.WHITE_CONCRETE_POWDER)
 					return;
 			
 				progress++;
 				
-				bar.get((int)Math.floor(progress/4)).setData((byte)4);
+				bar.get((int)Math.floor(progress/4)).setType(Material.YELLOW_CONCRETE_POWDER);
 				
 				if(progress+2 > bar.size()*4)
 					nextStep();
@@ -54,7 +54,7 @@ public class Refuel extends Longs {
 		
 		progress = 0;
 		for(Block block: bar)
-			block.setData((byte)0);
+			block.setType(Material.WHITE_CONCRETE_POWDER);
 		
 	}
 

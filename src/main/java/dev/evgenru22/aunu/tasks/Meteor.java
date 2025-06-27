@@ -1,7 +1,8 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,7 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import amongUs.Main;
 
 public class Meteor extends Task {
 	
@@ -38,7 +38,7 @@ public class Meteor extends Task {
 				startTimeout();
 				
 				if(visual)
-					lastLocPlayer.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, loc, 1);
+					lastLocPlayer.getWorld().spawnParticle(Particle.EXPLOSION_EMITTER, loc, 1);
 				
 				if(progress < 20)
 					newMeteor();
@@ -55,7 +55,7 @@ public class Meteor extends Task {
 	private void newMeteor() {
 		
 		for(Block block: blocks)
-			block.setTypeIdAndData(35, (byte)15, false);
+			block.setType(Material.BLACK_WOOL);
 		
 		Block block = blocks.get((int)Math.floor(Math.random() * blocks.size()));
 

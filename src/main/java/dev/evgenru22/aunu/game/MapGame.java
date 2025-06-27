@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import dev.evgenru22.aunu.sabotages.Sabotage;
+import dev.evgenru22.aunu.tasks.Task;
 import org.bukkit.Location;
 import org.bukkit.World;
-import tasks.Task;
 
 public class MapGame {
 

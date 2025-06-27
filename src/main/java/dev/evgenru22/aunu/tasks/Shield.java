@@ -1,7 +1,8 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,7 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import amongUs.Main;
 
 public class Shield extends Task {
 
@@ -30,7 +30,7 @@ public class Shield extends Task {
 				
 				Block block = e.getClickedBlock();
 				
-				if(player == null || e.getPlayer() != player.getPlayer() || block == null || block.getType() != Material.WOOL)
+				if(player == null || e.getPlayer() != player.getPlayer() || block == null || block.getType() != Material.WHITE_WOOL)
 					return;
 			
 				progress++;
@@ -50,7 +50,7 @@ public class Shield extends Task {
 	public void start() {
 		
 		for(Location block: shields)
-			block.getBlock().setTypeIdAndData(35, (byte)14, false);
+			block.getBlock().setType(Material.RED_WOOL);
 		
 		progress = 0;
 		

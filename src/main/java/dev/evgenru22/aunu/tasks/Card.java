@@ -1,13 +1,13 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
+import dev.evgenru22.aunu.amongUs.Main;
+import dev.evgenru22.aunu.amongUs.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import amongUs.Main;
-import amongUs.Messages;
 
 public class Card extends Task {
 	

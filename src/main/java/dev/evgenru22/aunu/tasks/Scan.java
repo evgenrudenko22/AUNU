@@ -1,7 +1,8 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,7 +15,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
 
-import amongUs.Main;
 
 public class Scan extends Task {
 	
@@ -43,7 +43,7 @@ public class Scan extends Task {
 				if(startScan.distance(e.getPlayer().getLocation()) < 0.4) {
 					
 					progressTick();
-					player.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SLOW, bar.size()*40, 9));
+					player.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, bar.size()*40, 9));
 					
 				}
 				
@@ -65,7 +65,7 @@ public class Scan extends Task {
 				
 				progressTick();
 				
-				bar.get(bar.size()-progress-1).setData((byte)5);
+				bar.get(bar.size()-progress-1).setType(Material.LIME_WOOL);
 				
 				startTimeout();
 				
@@ -88,7 +88,7 @@ public class Scan extends Task {
 		
 		start = false;
 		for(Block block: bar)
-			block.setType(Material.WOOL);
+			block.setType(Material.WHITE_WOOL);
 		
 		player.getPlayer().teleport(location);
 		
@@ -100,7 +100,7 @@ public class Scan extends Task {
 		if(timerTask != null && !timerTask.isCancelled())
 			timerTask.cancel();
 		
-		player.getPlayer().removePotionEffect(PotionEffectType.SLOW);
+		player.getPlayer().removePotionEffect(PotionEffectType.SLOWNESS);
 		
 	}
 

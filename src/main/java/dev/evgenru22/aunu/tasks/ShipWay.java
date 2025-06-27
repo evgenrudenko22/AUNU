@@ -1,8 +1,9 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,7 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import amongUs.Main;
 
 public class ShipWay extends Task {
 	
@@ -35,7 +35,7 @@ public class ShipWay extends Task {
 					return;
 			
 				progress++;
-				block.setType(Material.STAINED_CLAY);
+				block.setType(Material.TERRACOTTA);
 				
 				if(progress > way.size()-1)
 					complete(true);

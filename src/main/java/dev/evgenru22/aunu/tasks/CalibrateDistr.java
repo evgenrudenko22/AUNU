@@ -1,8 +1,10 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
+import dev.evgenru22.aunu.amongUs.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -12,8 +14,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import amongUs.Main;
-import amongUs.Messages;
 
 public class CalibrateDistr extends Task {
 	
@@ -26,7 +26,7 @@ public class CalibrateDistr extends Task {
 		super(loc, locTo);
 		
 		for(Block block: blocksFromTwoPoints(poleStart, poleEnd))
-			if(block.getType() == Material.WOOL)
+			if(block.getType() == Material.WHITE_WOOL)
 				pole.add(block);
 		
 		Bukkit.getScheduler().runTaskTimer(Main.plugin, new Runnable() {@Override public void run() {tick();}}, 20, 20);
@@ -39,12 +39,12 @@ public class CalibrateDistr extends Task {
 				
 				Block block = e.getClickedBlock();
 				
-				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.CONCRETE_POWDER)
+				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.WHITE_CONCRETE_POWDER)
 					return;
 			
 				boolean yes = false;
 				for(Block _block: pole)
-					if(!success.contains(_block) && _block.getData() == 15 && _block.getLocation().distance(block.getLocation()) < 1.1) {
+					if(!success.contains(_block) && _block.getType() == Material.BLACK_CONCRETE_POWDER && _block.getLocation().distance(block.getLocation()) < 1.1) {
 						
 						success.add(_block);
 						blocks.remove(_block);
@@ -85,7 +85,7 @@ public class CalibrateDistr extends Task {
 			
 			int num = pole.indexOf(block)+1;
 			
-			block.setData((byte)0);
+			block.setType(Material.WHITE_WOOL);
 			
 			if(num+1 > pole.size())
 				num = 0;
@@ -94,12 +94,12 @@ public class CalibrateDistr extends Task {
 			
 			blocks.set(blocks.indexOf(block), pole.get(num));
 			
-			_block.setData((byte)15);
+			_block.setType(Material.BLACK_WOOL);
 			
 		}
 		
 		for(Block block: success)
-			block.setData((byte)5);
+			block.setType(Material.LIME_WOOL);
 		
 	}
 
@@ -108,7 +108,7 @@ public class CalibrateDistr extends Task {
 	public void start() {
 		
 		for(Block block: pole)
-			block.setData((byte)0);
+			block.setType(Material.WHITE_WOOL);
 		
 		blocks = new ArrayList<Block>();
 		success = new ArrayList<Block>();

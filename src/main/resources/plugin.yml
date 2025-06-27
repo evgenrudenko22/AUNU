@@ -1,8 +1,12 @@
 name: AUNU
 version: 1.0.0
+author: evgenru22
 main: dev.evgenru22.aunu.amongUs.Main
+api-version: 1.20.1
 commands:
   among:
     description: Among Us plugin main command
     usage: /among <String> [String] [String]
     aliases: [among]
+depend:
+  - ProtocolLib

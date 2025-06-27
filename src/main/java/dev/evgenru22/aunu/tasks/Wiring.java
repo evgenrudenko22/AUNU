@@ -1,7 +1,8 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import amongUs.Main;
 
 public class Wiring extends Longs {
 	
@@ -37,42 +37,42 @@ public class Wiring extends Longs {
 				
 				Block block = e.getClickedBlock();
 				
-				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.WOOL)
+				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.WHITE_WOOL)
 					return;
 				
-				int type = 0;
+				Material type = Material.WHITE_WOOL;
 				
 				for(Block _block: blue)
 					if(_block.getLocation().distance(block.getLocation()) < 1)
-						type = 11;
+						type = Material.BLUE_WOOL;
 				for(Block _block: red)
 					if(_block.getLocation().distance(block.getLocation()) < 1)
-						type = 14;
+						type = Material.RED_WOOL;
 				for(Block _block: yellow)
 					if(_block.getLocation().distance(block.getLocation()) < 1)
-						type = 4;
+						type = Material.YELLOW_WOOL;
 				for(Block _block: green)
 					if(_block.getLocation().distance(block.getLocation()) < 1)
-						type = 5;
+						type = Material.LIME_WOOL;
 				
-				if(type != 0) {
+				if(type != Material.WHITE_WOOL) {
 					
-					block.setData((byte)type);
+					block.setType(type);
 					startTimeout();
 					
 				}
 				
 				for(Block _block: blue)
-					if(_block.getData() == 0)
+					if(_block.getType() == Material.WHITE_WOOL)
 						return;
 				for(Block _block: red)
-					if(_block.getData() == 0)
+					if(_block.getType() == Material.WHITE_WOOL)
 						return;
 				for(Block _block: yellow)
-					if(_block.getData() == 0)
+					if(_block.getType() == Material.WHITE_WOOL)
 						return;
 				for(Block _block: green)
-					if(_block.getData() == 0)
+					if(_block.getType() == Material.WHITE_WOOL)
 						return;
 				
 				nextStep();
@@ -83,18 +83,17 @@ public class Wiring extends Longs {
 		
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void start() {
 		
 		for(Block block: blue)
-			block.setTypeId(35);
+			block.setType(Material.WHITE_WOOL);
 		for(Block block: red)
-			block.setTypeId(35);
+			block.setType(Material.WHITE_WOOL);
 		for(Block block: yellow)
-			block.setTypeId(35);
+			block.setType(Material.WHITE_WOOL);
 		for(Block block: green)
-			block.setTypeId(35);
+			block.setType(Material.WHITE_WOOL);
 		
 	}
 

@@ -1,8 +1,12 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
+import dev.evgenru22.aunu.amongUs.Messages;
+import dev.evgenru22.aunu.game.PlaySound;
+import dev.evgenru22.aunu.game.PlayerGame;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -10,11 +14,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Snowball;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.Scoreboard;
-
-import amongUs.Main;
-import amongUs.Messages;
-import game.PlaySound;
-import game.PlayerGame;
 
 public abstract class Task {
 

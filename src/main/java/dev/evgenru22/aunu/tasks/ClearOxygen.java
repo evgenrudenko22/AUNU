@@ -1,17 +1,18 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import amongUs.Main;
 
 public class ClearOxygen extends Task {
 	
@@ -32,22 +33,22 @@ public class ClearOxygen extends Task {
 				
 				Block block = e.getClickedBlock();
 				
-				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.WOOL)
+				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.WHITE_WOOL)
 					return;
 				
-				if(block.getData() == 4)
+				if(block.getType() == Material.YELLOW_WOOL)
 					currentBlock = block;
 				
-				if(block.getData() == 0 && currentBlock != null) {
+				if(block.getType() == Material.WHITE_WOOL && currentBlock != null) {
 					
-					currentBlock.setTypeIdAndData(251, (byte)7, false);
+					currentBlock.setType(Material.GRAY_WOOL);
 					currentBlock = null;
 					startTimeout();
 					
 				}
 				
 				for(Block _block: pole)
-					if(_block.getTypeId() == 35)
+					if(Tag.WOOL.isTagged(_block.getType()))
 						return;
 				
 				complete(true);
@@ -63,13 +64,13 @@ public class ClearOxygen extends Task {
 	public void start() {
 		
 		for(Block block: pole)
-			block.setTypeIdAndData(251, (byte)7, false);
+			block.setType(Material.WHITE_WOOL);
 		
 		for(int i = 0; i < 7; i++) {
 			
 			int random = (int)Math.floor(Math.random() * pole.size());
 			
-			pole.get(random).setTypeIdAndData(35, (byte)4, false);	
+			pole.get(random).setType(Material.YELLOW_WOOL);
 			
 		}
 		

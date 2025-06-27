@@ -1,11 +1,13 @@
 package dev.evgenru22.aunu.game;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.comphenix.protocol.events.PacketContainer;
 import dev.evgenru22.aunu.amongUs.Main;
 import dev.evgenru22.aunu.amongUs.Messages;
 import dev.evgenru22.aunu.events.GameEndEvent;
@@ -33,7 +35,6 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 import net.md_5.bungee.api.ChatMessageType;
-import net.minecraft.server.v1_12_R1.Packet;
 import tasks.Task;
 
 public class Game {
@@ -559,10 +560,15 @@ public class Game {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public void sendPackets(Packet packet) {
+	public void sendPackets(PacketContainer packet) {
 		
-		for(PlayerGame player: players)
-			((Player)player.getPlayer()).getHandle().playerConnection.sendPacket(packet);
+		for(PlayerGame player: players) {
+			try {
+				ProtocolLibManager.protocollib.sendServerPacket(player.getPlayer(), packet);
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	

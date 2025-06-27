@@ -1,10 +1,12 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import dev.evgenru22.aunu.amongUs.Main;
+import dev.evgenru22.aunu.game.PlayerGame;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -13,8 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.scoreboard.Scoreboard;
 
-import amongUs.Main;
-import game.PlayerGame;
 
 public abstract class Sabotage {
 

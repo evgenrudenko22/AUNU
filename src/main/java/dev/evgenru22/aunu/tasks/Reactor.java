@@ -1,7 +1,9 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
+import dev.evgenru22.aunu.amongUs.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -12,8 +14,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.scheduler.BukkitTask;
 
-import amongUs.Main;
-import amongUs.Messages;
 
 public class Reactor extends Task {
 	
@@ -40,7 +40,7 @@ public class Reactor extends Task {
 				
 				Block block = e.getClickedBlock();
 				
-				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || nowShow || block.getType() != Material.WOOL)
+				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || nowShow || block.getType() != Material.WHITE_WOOL)
 					return;
 			
 				int num = 0;
@@ -53,7 +53,7 @@ public class Reactor extends Task {
 						
 					}
 				
-				block.setData((byte)10);
+				block.setType(Material.PURPLE_WOOL);
 				
 				startTimeout();
 				
@@ -62,7 +62,7 @@ public class Reactor extends Task {
 					
 					if(progress > currentClick) {
 						
-						Bukkit.getScheduler().runTaskLater(Main.plugin, new Runnable() {@Override public void run() {block.setData((byte)7);}}, 10);
+						Bukkit.getScheduler().runTaskLater(Main.plugin, new Runnable() {@Override public void run() {block.setType(Material.GRAY_WOOL);}}, 10);
 						currentClick++;
 						
 					} else {
@@ -74,7 +74,7 @@ public class Reactor extends Task {
 							
 						}
 						
-						bar.get(progress).getBlock().setData((byte)5);
+						bar.get(progress).getBlock().setType(Material.LIME_WOOL);
 						progress++;
 						currentClick = 0;
 						Bukkit.getScheduler().runTaskLater(Main.plugin, new Runnable() {@Override public void run() {showSeries(0);}}, 15);
@@ -94,11 +94,10 @@ public class Reactor extends Task {
 		
 	}
 	
-	@SuppressWarnings("deprecation")
 	private void showSeries(int i) {
 		
 		for(Location block: buttons)
-			block.getBlock().setData((byte)7);
+			block.getBlock().setType(Material.GRAY_WOOL);
 		
 		nowShow = true;
 		
@@ -106,14 +105,14 @@ public class Reactor extends Task {
 		
 			int num = Integer.parseInt(series.split(",")[i]);
 			
-			Bukkit.getScheduler().runTaskLater(Main.plugin, new Runnable() {@Override public void run() {buttons.get(num).getBlock().setData((byte)11);}}, 5);
+			Bukkit.getScheduler().runTaskLater(Main.plugin, new Runnable() {@Override public void run() {buttons.get(num).getBlock().setType(Material.GRAY_WOOL);}}, 5);
 			
 			timerShow = Bukkit.getScheduler().runTaskLater(Main.plugin, new Runnable() {
 				
 				@Override
 				public void run() {
 					
-					buttons.get(num).getBlock().setData((byte)7);
+					buttons.get(num).getBlock().setType(Material.GRAY_WOOL);
 					
 					showSeries(i+1);
 					
@@ -140,9 +139,9 @@ public class Reactor extends Task {
 		progress = 0;
 		currentClick = 0;
 		for(Location block: buttons)
-			block.getBlock().setData((byte)7);
+			block.getBlock().setType(Material.GRAY_WOOL);
 		for(Location block: bar)
-			block.getBlock().setData((byte)7);
+			block.getBlock().setType(Material.GRAY_WOOL);
 		
 		for(int i = 0; i < bar.size(); i++) {
 			

@@ -1,10 +1,10 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Messages;
 import org.bukkit.Location;
 
-import amongUs.Messages;
 
 public abstract class Longs extends Task {
 	

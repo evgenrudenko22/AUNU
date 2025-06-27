@@ -1,7 +1,8 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import amongUs.Main;
 
 public class StabilizeDrive extends Longs {
 	
@@ -32,14 +32,14 @@ public class StabilizeDrive extends Longs {
 				
 				Block block = e.getClickedBlock();
 				
-				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.CONCRETE_POWDER)
+				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND || block.getType() != Material.WHITE_CONCRETE_POWDER)
 					return;
 			
-				blocks.get(blocks.size()-num-1).setData((byte)0);
+				blocks.get(blocks.size()-num-1).setType(Material.WHITE_CONCRETE_POWDER);
 				
 				num++;
 				
-				blocks.get(blocks.size()-num-1).setData((byte)5);
+				blocks.get(blocks.size()-num-1).setType(Material.LIME_CONCRETE_POWDER);
 				
 				if(num+2 > blocks.size())
 					nextStep();
@@ -57,9 +57,9 @@ public class StabilizeDrive extends Longs {
 		num = 0;
 		
 		for(Block block: blocks)
-			block.setData((byte)0);
+			block.setType(Material.WHITE_CONCRETE_POWDER);
 		
-		blocks.get(blocks.size()-1).setData((byte)5);
+		blocks.get(blocks.size()-1).setType(Material.LIME_CONCRETE_POWDER);
 		
 	}
 

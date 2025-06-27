@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.comphenix.protocol.events.PacketContainer;
 import dev.evgenru22.aunu.amongUs.Main;
 import dev.evgenru22.aunu.game.Lobby;
 import dev.evgenru22.aunu.game.PlayerGame;
@@ -104,23 +105,27 @@ public class ProtocolLibManager {
 		
 	}
 	
-	public static PacketPlayOutNamedEntitySpawn packetNamedSpawnEntitySpawn(Player p, int id) {
-		
-		PacketPlayOutNamedEntitySpawn packet = new PacketPlayOutNamedEntitySpawn(((CraftPlayer)p.getPlayer()).getHandle());
+	public static PacketContainer packetNamedSpawnEntitySpawn(Player p, int id) {
+
+		PacketContainer packet = new PacketContainer(PacketType.Play.Server.NAMED_ENTITY_SPAWN);
 		
 		Location loc = p.getPlayer().getLocation();
-		setValue(packet, "a", id);
-		setValue(packet, "d", loc.getY()-1.43);
-		setValue(packet, "f", (byte)0);
-		setValue(packet, "g", (byte)-90);
+		packet.getIntegers().write(0, id);
+		packet.getDoubles().write(1, loc.getY()-1.43);
+		byte yawByte = (byte) (0 / 360);
+		byte pitchByte = (byte) ((-90 % 360) * 256 / 360);
+		packet.getBytes().write(0, yawByte);
+		packet.getBytes().write(1, pitchByte);
 		
 		return packet;
 		
 	}
 	
-	public static PacketPlayOutEntityDestroy packetEntityDestroy(int id) {
-		
-		return new PacketPlayOutEntityDestroy(id);
+	public static PacketContainer packetEntityDestroy(int id) {
+		PacketContainer packetContainer = new PacketContainer(PacketType.Play.Server.ENTITY_DESTROY);
+		packetContainer.getIntegerArrays().write(0, new int[]{id});
+
+		return packetContainer;
 		
 	}
 	

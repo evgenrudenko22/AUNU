@@ -1,7 +1,8 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -12,7 +13,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitTask;
 
-import amongUs.Main;
 
 public class Rabbish extends Longs {
 	
@@ -49,7 +49,7 @@ public class Rabbish extends Longs {
 				timerTask = Bukkit.getScheduler().runTaskLater(Main.plugin, new Runnable() {@Override public void run() {nextStep();}}, 2*25);
 				
 				if(visual)
-					lastLocPlayer.getWorld().spawnParticle(Particle.EXPLOSION_NORMAL, lastLocPlayer, 1);
+					lastLocPlayer.getWorld().spawnParticle(Particle.EXPLOSION, lastLocPlayer, 1);
 				
 			}
 			
@@ -78,7 +78,7 @@ public class Rabbish extends Longs {
 			timerTask.cancel();
 		
 		for(Block block: ground)
-			block.setTypeIdAndData(251, (byte)13, false);
+			block.setType(Material.GREEN_CONCRETE);
 		
 	}
 	

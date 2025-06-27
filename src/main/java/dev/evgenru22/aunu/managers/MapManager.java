@@ -8,28 +8,12 @@ import java.util.Map;
 import dev.evgenru22.aunu.amongUs.Messages;
 import dev.evgenru22.aunu.game.*;
 import dev.evgenru22.aunu.sabotages.*;
+import dev.evgenru22.aunu.sabotages.Sabotage;
+import dev.evgenru22.aunu.tasks.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
-
-import tasks.CalibrateDistr;
-import tasks.Card;
-import tasks.ClearOxygen;
-import tasks.Energy;
-import tasks.Meteor;
-import tasks.Rabbish;
-import tasks.Reactor;
-import tasks.Refuel;
-import tasks.Scan;
-import tasks.Shield;
-import tasks.ShipWay;
-import tasks.StabilizeDrive;
-import tasks.StabilizeWay;
-import tasks.Task;
-import tasks.UnlockManifold;
-import tasks.Upload_Download;
-import tasks.Wiring;
 
 public class MapManager {
 	

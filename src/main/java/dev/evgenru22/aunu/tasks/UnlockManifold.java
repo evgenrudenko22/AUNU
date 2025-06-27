@@ -1,9 +1,11 @@
-package tasks;
+package dev.evgenru22.aunu.tasks;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import dev.evgenru22.aunu.amongUs.Main;
+import dev.evgenru22.aunu.amongUs.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,8 +16,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import amongUs.Main;
-import amongUs.Messages;
 
 public class UnlockManifold extends Task {
 	
@@ -40,7 +40,7 @@ public class UnlockManifold extends Task {
 				if(player == null || e.getPlayer() != player.getPlayer() || block == null || e.getHand() != EquipmentSlot.HAND)
 					return;
 				
-				if(block.getType() != Material.SIGN && block.getType() != Material.WALL_SIGN)
+				if(block.getType() != Material.OAK_SIGN)
 					return;
 			
 				startTimeout();
