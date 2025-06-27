@@ -1,0 +1,8 @@
+name: AUNU
+version: 1.0.0
+main: dev.evgenru22.aunu.amongUs.Main
+commands:
+  among:
+    description: Among Us plugin main command
+    usage: /among <String> [String] [String]
+    aliases: [among]

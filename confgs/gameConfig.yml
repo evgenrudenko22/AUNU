@@ -2,7 +2,7 @@ map: the_skeld
 visual_task: true
 confirm_eject: true
 imposters: 1
-emergency_metting: 1
+emergency_metting: 3
 timeout_metting: 10
 time_voting: 60
 speed_player: 2
